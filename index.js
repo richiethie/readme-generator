@@ -2,7 +2,7 @@ import inquirer from "inquirer"
 
 import fs from "fs"
 // add to outline of READme and then done
-const generateReadMe = ({title, description, installation, usage, contributing, testing, username, email}) => 
+const generateReadMe = ({title, description, installation, usage, license, contributing, testing, username, email}) => 
 `# ${title}
 
 ## Description
@@ -13,8 +13,10 @@ const generateReadMe = ({title, description, installation, usage, contributing, 
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [Credits](#credits)
 - [License](#license)
+- [Badges](#badges)
+- [Tests](#tests)
+- [Questions](#questions)
 
 ## Installation
 
@@ -27,7 +29,7 @@ const generateReadMe = ({title, description, installation, usage, contributing, 
 
 ## License
 
-MIT License
+ ${license}
 
 Copyright (c) 2022 Richie Thiesfeldt
 
@@ -53,10 +55,6 @@ SOFTWARE.
 
 ![Bower](https://img.shields.io/bower/l/bootstrap)
 
-## Features
-
-If your project has a lot of features, list them here.
-
 ## How to Contribute
 
  ${contributing}
@@ -67,9 +65,11 @@ If your project has a lot of features, list them here.
 
 ## Questions
 
- ${username}
+My GitHub username: ${username}
 
- ${email}`
+Github profile: https://github.com/${username}
+
+You can contact me via email with any additional questions at ${email}.`
 
 inquirer
     .prompt ([
@@ -92,6 +92,12 @@ inquirer
             type: 'input',
             name: 'usage',
             message: 'This READme will need instructions on how to use your application, please enter the instructions here.',
+        },
+        {
+            type: 'list',
+            name: 'license',
+            message: 'Please choose a license for your project.', 
+            choices: ['MIT license', 'Mozilla Public License 2.0', 'Apache License 2.0', 'GNU GPLv3' ],
         },
         {
             type: 'input',
